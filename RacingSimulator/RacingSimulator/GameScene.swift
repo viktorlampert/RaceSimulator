@@ -62,7 +62,7 @@ class GameScene: SKScene {
         }
         
     }
-    
+    //sasas
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if let touch = touches.first{
             let location = touch.previousLocation(in: self)
