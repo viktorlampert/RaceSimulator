@@ -18,6 +18,10 @@
 		E2B3EF7A26323F01004C266E /* StartScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B3EF7926323F01004C266E /* StartScene.swift */; };
 		E2B3EF8326323FAF004C266E /* ConditionScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = E2B3EF8226323FAF004C266E /* ConditionScene.sks */; };
 		E2B3EF85263240C0004C266E /* ConditionScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B3EF84263240C0004C266E /* ConditionScene.swift */; };
+		E2B3EF89263242F1004C266E /* WetScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B3EF88263242F1004C266E /* WetScene.swift */; };
+		E2B3EF8E26324318004C266E /* SnowScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B3EF8D26324318004C266E /* SnowScene.swift */; };
+		E2B3EF9126324442004C266E /* WetScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = E2B3EF9026324442004C266E /* WetScene.sks */; };
+		E2B3EF942632444F004C266E /* SnowScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = E2B3EF932632444F004C266E /* SnowScene.sks */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +38,10 @@
 		E2B3EF7926323F01004C266E /* StartScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartScene.swift; sourceTree = "<group>"; };
 		E2B3EF8226323FAF004C266E /* ConditionScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = ConditionScene.sks; sourceTree = "<group>"; };
 		E2B3EF84263240C0004C266E /* ConditionScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionScene.swift; sourceTree = "<group>"; };
+		E2B3EF88263242F1004C266E /* WetScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WetScene.swift; sourceTree = "<group>"; };
+		E2B3EF8D26324318004C266E /* SnowScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnowScene.swift; sourceTree = "<group>"; };
+		E2B3EF9026324442004C266E /* WetScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = WetScene.sks; sourceTree = "<group>"; };
+		E2B3EF932632444F004C266E /* SnowScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = SnowScene.sks; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,12 +76,16 @@
 			children = (
 				772D974D2631C80D00209F57 /* AppDelegate.swift */,
 				772D974F2631C80D00209F57 /* GameScene.sks */,
+				E2B3EF9026324442004C266E /* WetScene.sks */,
+				E2B3EF932632444F004C266E /* SnowScene.sks */,
 				E2B3EF7626323D89004C266E /* StartScene.sks */,
 				E2B3EF8226323FAF004C266E /* ConditionScene.sks */,
 				772D97512631C80D00209F57 /* Actions.sks */,
 				772D97532631C80D00209F57 /* GameScene.swift */,
 				E2B3EF7926323F01004C266E /* StartScene.swift */,
 				E2B3EF84263240C0004C266E /* ConditionScene.swift */,
+				E2B3EF88263242F1004C266E /* WetScene.swift */,
+				E2B3EF8D26324318004C266E /* SnowScene.swift */,
 				772D97552631C80D00209F57 /* GameViewController.swift */,
 				772D97572631C80D00209F57 /* Main.storyboard */,
 				772D975A2631C81000209F57 /* Assets.xcassets */,
@@ -140,7 +152,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				772D97592631C80D00209F57 /* Main.storyboard in Resources */,
+				E2B3EF942632444F004C266E /* SnowScene.sks in Resources */,
 				772D97502631C80D00209F57 /* GameScene.sks in Resources */,
+				E2B3EF9126324442004C266E /* WetScene.sks in Resources */,
 				E2B3EF8326323FAF004C266E /* ConditionScene.sks in Resources */,
 				772D975B2631C81000209F57 /* Assets.xcassets in Resources */,
 				E2B3EF7726323D89004C266E /* StartScene.sks in Resources */,
@@ -156,8 +170,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				772D97542631C80D00209F57 /* GameScene.swift in Sources */,
+				E2B3EF89263242F1004C266E /* WetScene.swift in Sources */,
 				E2B3EF85263240C0004C266E /* ConditionScene.swift in Sources */,
 				772D97562631C80D00209F57 /* GameViewController.swift in Sources */,
+				E2B3EF8E26324318004C266E /* SnowScene.swift in Sources */,
 				772D974E2631C80D00209F57 /* AppDelegate.swift in Sources */,
 				E2B3EF7A26323F01004C266E /* StartScene.swift in Sources */,
 			);
