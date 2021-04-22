@@ -30,27 +30,34 @@ class GameScene: SKScene {
         createCar()
     }
     
-    func moveVertically (up: Bool){
+    func moveForward (up: Bool){
         if up{
-            let moveAction = SKAction.moveBy(x: 0, y: 3, duration: 0.01)
-            let repeatAction = SKAction.repeatForever(moveAction)
-            coupe?.run(repeatAction)
-        }else{
-            let moveAction = SKAction.moveBy(x: 0, y: -3, duration: 0.01)
-            let repeatAction = SKAction.repeatForever(moveAction)
+            let rotate = SKAction.rotate(byAngle: CGFloat(Double.pi/4), duration: 0.01)
+            let repeatAction = SKAction.repeatForever(rotate)
             coupe?.run(repeatAction)
         }
         
     }
     
-    func moveHorizontal (right: Bool){
-        if right{
-            let moveAction = SKAction.moveBy(x: 3, y: 0, duration: 0.01)
-            let repeatAction = SKAction.repeatForever(moveAction)
+    func moveBackwards (down: Bool){
+        if down{
+            let rotate = SKAction.move(by: <#T##CGVector#>, duration: <#T##TimeInterval#>)
+            let repeatAction = SKAction.repeatForever(rotate)
             coupe?.run(repeatAction)
-        }else{
-            let moveAction = SKAction.moveBy(x: -3, y: 0, duration: 0.01)
-            let repeatAction = SKAction.repeatForever(moveAction)
+        }
+        
+    }
+    func turnLeft(left: Bool){
+        if left{
+            let rotate = SKAction.rotate(byAngle: CGFloat(Double.pi/60), duration: 0.01)
+            let repeatAction = SKAction.repeatForever(rotate)
+            coupe?.run(repeatAction)
+        }
+    }
+    func turnRight (right: Bool){
+        if right{
+            let rotate = SKAction.rotate(byAngle: CGFloat(-Double.pi/60), duration: 0.01)
+            let repeatAction = SKAction.repeatForever(rotate)
             coupe?.run(repeatAction)
         }
         
@@ -62,19 +69,19 @@ class GameScene: SKScene {
             let node = self.nodes(at: location).first
             
             if node?.name == "Right"{
-                moveHorizontal(right: true)
+                turnRight(right: true)
                 print("Right")
             }
             if node?.name == "Left"{
-                moveHorizontal(right: false)
+                turnLeft(left: true)
                 print("Left")
             }
             else if node?.name == "Up"{
-                moveVertically(up: true)
+                moveForward(up: true)
                 print("Up")
             }
             else if node?.name == "Down"{
-                moveVertically(up: false)
+                moveBackwards(down: true)
                 print("Down")
             }
         }
