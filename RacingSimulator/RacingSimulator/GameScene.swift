@@ -32,18 +32,18 @@ class GameScene: SKScene {
     
     func moveForward (up: Bool){
         if up{
-            let rotate = SKAction.moveBy(, y: <#T##CGFloat#>, duration: <#T##TimeInterval#>)
-            let repeatAction = SKAction.repeatForever(rotate)
-            coupe?.run(repeatAction)
+            //let rotate = SKAction.moveBy(, y: <#T##CGFloat#>, duration: <#T##TimeInterval#>)
+            //let repeatAction = SKAction.repeatForever(rotate)
+            //coupe?.run(repeatAction)
         }
         
     }
     
     func moveBackwards (down: Bool){
         if down{
-            let rotate = SKAction.move(by: <#T##CGVector#>, duration: <#T##TimeInterval#>)
-            let repeatAction = SKAction.repeatForever(rotate)
-            coupe?.run(repeatAction)
+            //let rotate = SKAction.move(by: <#T##CGVector#>, duration: <#T##TimeInterval#>)
+            //let repeatAction = SKAction.repeatForever(rotate)
+            //coupe?.run(repeatAction)
         }
         
     }
