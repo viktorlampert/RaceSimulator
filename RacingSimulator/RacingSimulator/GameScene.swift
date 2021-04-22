@@ -32,7 +32,7 @@ class GameScene: SKScene {
     
     func moveForward (up: Bool){
         if up{
-            let rotate = SKAction.rotate(byAngle: CGFloat(Double.pi/4), duration: 0.01)
+            let rotate = SKAction.moveBy(, y: <#T##CGFloat#>, duration: <#T##TimeInterval#>)
             let repeatAction = SKAction.repeatForever(rotate)
             coupe?.run(repeatAction)
         }
