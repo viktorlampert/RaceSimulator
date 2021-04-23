@@ -10,8 +10,10 @@ import GameplayKit
 
 class GameScene: SKScene {
     
-    var track: SKSpriteNode?
+    var track:SKSpriteNode?
     var coupe:SKSpriteNode?
+    let ball = SKSpriteNode(imageNamed: "Stick")
+    let base = SKSpriteNode(imageNamed: "Base")
     
     
     func createTrack(){
@@ -64,26 +66,31 @@ class GameScene: SKScene {
     }
     //sasas
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if let touch = touches.first{
-            let location = touch.previousLocation(in: self)
-            let node = self.nodes(at: location).first
+        
+        for touch in (touches as! Set<UITouch>){
+            let location = touch.location(in: self)
             
-            if node?.name == "Right"{
-                turnRight(right: true)
-                print("Right")
-            }
-            if node?.name == "Left"{
-                turnLeft(left: true)
-                print("Left")
-            }
-            else if node?.name == "Up"{
-                moveForward(up: true)
-                print("Up")
-            }
-            else if node?.name == "Down"{
-                moveBackwards(down: true)
-                print("Down")
-            }
+    }
+    }
+    
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        for touch in (touches as! Set<UITouch>){
+            let location = touch.location(in: self)
+            
+            let v = CGVector(dx: location.x - base.position.x, dy: location.y - base.position.y)
+            let angle = atan2(v.dy, v.dx)
+            
+            let deg = angle * CGFloat(180 / Double.pi)
+            //print(deg + 180)
+            
+            let length:CGFloat = base.frame.size.height / 2
+            
+            let xDist:CGFloat = sin(angle - 1.57079633) * length
+            let yDist:CGFloat = cos(angle - 1.57079633) * length
+            
+            ball.position = CGPoint(x:base.position.x - xDist,y:base.position.y + yDist)
+            
+            
         }
     }
     
