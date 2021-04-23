@@ -71,8 +71,13 @@ class GameScene: SKScene {
             }
             
             car.zRotation = angle - 1.57079633
-            car.position = CGPoint(x: 300 - xDist, y: 200 + yDist)
-            
+            //car.position = CGPoint(x: 300 - xDist, y: 200 + yDist)
+                if(deg + 180) > 230 && (deg + 180) < 320{
+                    moveVertically(up: true)
+                }
+                if (deg + 180) > 60  && (deg + 180) < 120 {
+                    moveVertically(up: false)
+                }
     
             }
             
@@ -87,6 +92,19 @@ class GameScene: SKScene {
             let move:SKAction = SKAction.move(to: base.position, duration: 0.2)
             move.timingMode = .easeOut
             ball.run(move)
+            car.removeAllActions()
+        }
+    }
+    
+    func moveVertically(up:Bool){
+        if up{
+            let moveAction = SKAction.moveBy(x: 0, y: 0.01, duration: 0.01)
+            let repeatAction = SKAction.repeatForever(moveAction)
+            car.run(repeatAction)
+        }else{
+            let moveAction = SKAction.moveBy(x: 0, y: -0.01, duration: 0.01)
+            let repeatAction = SKAction.repeatForever(moveAction)
+            car.run(repeatAction)
         }
     }
     
