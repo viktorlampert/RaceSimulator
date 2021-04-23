@@ -14,92 +14,80 @@ class GameScene: SKScene {
     var coupe:SKSpriteNode?
     let ball = SKSpriteNode(imageNamed: "Stick")
     let base = SKSpriteNode(imageNamed: "Base")
-    
-    
+    let car = SKSpriteNode(imageNamed: "Car1")
+    var stickActive:Bool = false
+
     func createTrack(){
         track = self.childNode(withName: "NormalTrack") as? SKSpriteNode
     }
     
-    func createCar(){
-        coupe = SKSpriteNode(imageNamed: "Car1")
-        guard let carPosition = track?.position.x else {return}
-        coupe?.position = CGPoint(x: carPosition, y: self.size.height / 2)
-        self.addChild(coupe!)
-    }
-    
     override func didMove(to view: SKView) {
-        createTrack()
-        createCar()
-    }
-    
-    func moveForward (up: Bool){
-        if up{
-            //let rotate = SKAction.moveBy(, y: <#T##CGFloat#>, duration: <#T##TimeInterval#>)
-            //let repeatAction = SKAction.repeatForever(rotate)
-            //coupe?.run(repeatAction)
-        }
         
-    }
-    
-    func moveBackwards (down: Bool){
-        if down{
-            //let rotate = SKAction.move(by: <#T##CGVector#>, duration: <#T##TimeInterval#>)
-            //let repeatAction = SKAction.repeatForever(rotate)
-            //coupe?.run(repeatAction)
-        }
+        self.addChild(base)
+        base.position = CGPoint(x: 680, y: 50)
         
-    }
-    func turnLeft(left: Bool){
-        if left{
-            let rotate = SKAction.rotate(byAngle: CGFloat(Double.pi/60), duration: 0.01)
-            let repeatAction = SKAction.repeatForever(rotate)
-            coupe?.run(repeatAction)
-        }
-    }
-    func turnRight (right: Bool){
-        if right{
-            let rotate = SKAction.rotate(byAngle: CGFloat(-Double.pi/60), duration: 0.01)
-            let repeatAction = SKAction.repeatForever(rotate)
-            coupe?.run(repeatAction)
-        }
+        self.addChild(ball)
+        ball.position = base.position
         
+        self.addChild(car)
+        car.position = CGPoint(x: 300, y: 200)
     }
-    //sasas
+ 
+ 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         
-        for touch in (touches as! Set<UITouch>){
+        for touch in (touches){
             let location = touch.location(in: self)
             
-    }
+            if (ball.frame.contains(location)){
+                stickActive = true
+            }else{
+                stickActive = false
+            }
+        }
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for touch in (touches as! Set<UITouch>){
+        for touch in (touches){
             let location = touch.location(in: self)
+            
+            if (stickActive == true){
             
             let v = CGVector(dx: location.x - base.position.x, dy: location.y - base.position.y)
             let angle = atan2(v.dy, v.dx)
             
             let deg = angle * CGFloat(180 / Double.pi)
-            //print(deg + 180)
+            print(deg + 180)
             
             let length:CGFloat = base.frame.size.height / 2
             
             let xDist:CGFloat = sin(angle - 1.57079633) * length
             let yDist:CGFloat = cos(angle - 1.57079633) * length
+                        
+            if (base.frame.contains(location)){
+                ball.position = location
+            }else{
+                ball.position = CGPoint(x:base.position.x - xDist,y:base.position.y + yDist)
+            }
             
-            ball.position = CGPoint(x:base.position.x - xDist,y:base.position.y + yDist)
+            car.zRotation = angle - 1.57079633
+            car.position = CGPoint(x: 300 - xDist, y: 200 + yDist)
             
+    
+            }
             
         }
     }
     
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        coupe?.removeAllActions()
-    }
     
-    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
-        coupe?.removeAllActions()
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+     
+        if (stickActive == true){
+            let move:SKAction = SKAction.move(to: base.position, duration: 0.2)
+            move.timingMode = .easeOut
+            ball.run(move)
+        }
     }
     
     
