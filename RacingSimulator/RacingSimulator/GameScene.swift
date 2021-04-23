@@ -53,31 +53,7 @@ class GameScene: SKScene {
             
             if (stickActive == true){
             
-            let v = CGVector(dx: location.x - base.position.x, dy: location.y - base.position.y)
-            let angle = atan2(v.dy, v.dx)
-            
-            let deg = angle * CGFloat(180 / Double.pi)
-            print(deg + 180)
-            
-            let length:CGFloat = base.frame.size.height / 2
-            
-            let xDist:CGFloat = sin(angle - 1.57079633) * length
-            let yDist:CGFloat = cos(angle - 1.57079633) * length
-                        
-            if (base.frame.contains(location)){
-                ball.position = location
-            }else{
-                ball.position = CGPoint(x:base.position.x - xDist,y:base.position.y + yDist)
-            }
-            
-            car.zRotation = angle - 1.57079633
-            //car.position = CGPoint(x: 300 - xDist, y: 200 + yDist)
-                if(deg + 180) > 230 && (deg + 180) < 320{
-                    moveVertically(up: true)
-                }
-                if (deg + 180) > 60  && (deg + 180) < 120 {
-                    moveVertically(up: false)
-                }
+                moveForward()
     
             }
             
@@ -96,16 +72,8 @@ class GameScene: SKScene {
         }
     }
     
-    func moveVertically(up:Bool){
-        if up{
-            let moveAction = SKAction.moveBy(x: 0, y: 0.01, duration: 0.01)
-            let repeatAction = SKAction.repeatForever(moveAction)
-            car.run(repeatAction)
-        }else{
-            let moveAction = SKAction.moveBy(x: 0, y: -0.01, duration: 0.01)
-            let repeatAction = SKAction.repeatForever(moveAction)
-            car.run(repeatAction)
-        }
+    func moveForward(){
+        car.position = CGPoint(x:car.position.x + cos(car.zRotation) * 0.1,y:car.position.y + sin(car.zRotation) * 0.1)
     }
     
     
