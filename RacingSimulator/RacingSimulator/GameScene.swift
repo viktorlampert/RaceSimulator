@@ -24,11 +24,6 @@ class GameScene: SKScene {
         self.addChild(car)
         car.position = CGPoint(x: 300, y: 200)
         car.size = CGSize(width: 35,height: 30)
-        cameraNode.position = CGPoint(x: car.position.x, y: car.position.y)
-        self.addChild(cameraNode)
-        self.camera = cameraNode
-        let zoom = SKAction.scale(to: 0.5, duration: 1)
-        cameraNode.run(zoom)
         
     }
  
@@ -64,6 +59,7 @@ class GameScene: SKScene {
         down = false
     }
     func moveForward(){
+        car.physicsBody?.velocity = CGVector(dx: car.position.x + cos(car.zRotation) * 2, dy: car.position.y + sin(car.zRotation) * 2)
         let moveAction = SKAction.move(to: CGPoint(x:car.position.x + cos(car.zRotation) * 2,y:car.position.y + sin(car.zRotation) * 2), duration: 0.01)
         let repeatAction = SKAction.repeatForever(moveAction)
         car.run(repeatAction)
