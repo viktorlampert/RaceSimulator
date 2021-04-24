@@ -62,13 +62,17 @@ class GameScene: SKScene {
         car.physicsBody?.velocity = CGVector(dx: car.position.x + cos(car.zRotation) * 2, dy: car.position.y + sin(car.zRotation) * 2)
         let moveAction = SKAction.move(to: CGPoint(x:car.position.x + cos(car.zRotation) * 2,y:car.position.y + sin(car.zRotation) * 2), duration: 0.01)
         let repeatAction = SKAction.repeatForever(moveAction)
-        car.run(repeatAction)
+        car.run(repeatAction, completion: {
+            self.car.physicsBody?.velocity = CGVector(dx: self.car.position.x + cos(self.car.zRotation) * 2, dy: self.car.position.y + sin(self.car.zRotation) * 2)
+        })
     }
     
     func moveBack(){
         let moveAction = SKAction.move(to: CGPoint(x:car.position.x - cos(car.zRotation) * 2,y:car.position.y - sin(car.zRotation) * 2), duration: 0.01)
         let repeatAction = SKAction.repeatForever(moveAction)
-        car.run(repeatAction)
+        car.run(repeatAction, completion: {
+            self.car.physicsBody?.velocity = CGVector(dx: self.car.position.x - cos(self.car.zRotation) * 2, dy: self.car.position.y - sin(self.car.zRotation) * 2)
+        })
     }
 
     func moveLeft(){
