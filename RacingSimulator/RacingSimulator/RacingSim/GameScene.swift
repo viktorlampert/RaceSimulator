@@ -22,6 +22,7 @@ class GameScene: SKScene {
     override func didMove(to view: SKView) {
         self.addChild(car)
         car.position = CGPoint(x: 340, y: 135)
+        self.car.zPosition = 1.0
         car.size = CGSize(width: 35,height: 30)
         
     }
@@ -66,9 +67,7 @@ class GameScene: SKScene {
     func moveBack(){
         let moveAction = SKAction.move(to: CGPoint(x:car.position.x - cos(car.zRotation) * 2,y:car.position.y - sin(car.zRotation) * 2), duration: 0.01)
         let repeatAction = SKAction.repeatForever(moveAction)
-        car.run(repeatAction, completion: {
-            self.car.physicsBody?.velocity = CGVector(dx: self.car.position.x - cos(self.car.zRotation) * 2, dy: self.car.position.y - sin(self.car.zRotation) * 2)
-        })
+        car.run(repeatAction)
     }
 
     func moveLeft(){
@@ -78,14 +77,13 @@ class GameScene: SKScene {
     }
     
     func moveRight(){
-        let rotate = SKAction.rotate(byAngle: -1*(CGFloat(Double.pi / 120)), duration: 0.01)
+        let rotate = SKAction.rotate(byAngle: -(CGFloat(Double.pi / 120)), duration: 0.01)
         let repeatAction = SKAction.repeatForever(rotate)
         car.run(repeatAction)
     }
 
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
-        //moveForward()
         if up == true {
             moveForward()
         }else if down == true{
