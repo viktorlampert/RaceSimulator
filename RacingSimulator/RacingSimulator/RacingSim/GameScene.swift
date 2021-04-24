@@ -14,7 +14,7 @@ class GameScene: SKScene {
     let car = SKSpriteNode(imageNamed: CarHandler.sharedInstances.car)
     var up:Bool = false
     var down:Bool = false
-
+    
     func createTrack(){
         track = self.childNode(withName: "NormalTrack") as? SKSpriteNode
     }
@@ -24,6 +24,8 @@ class GameScene: SKScene {
         car.position = CGPoint(x: 340, y: 135)
         self.car.zPosition = 1.0
         car.size = CGSize(width: 35,height: 30)
+        car.physicsBody = SKPhysicsBody(rectangleOf: car.size)
+        car.physicsBody?.affectedByGravity = false
         
     }
  
@@ -31,14 +33,14 @@ class GameScene: SKScene {
         if let touch = touches.first{
             let location = touch.previousLocation(in: self)
             let node = self.nodes(at: location).first
-                        
+
             if node?.name == "Up"{
                 up = true
             }else if node?.name == "Down"{
                 down = true
             }else if node?.name == "Left"{
                 moveLeft()
-                
+
             }else if node?.name == "Right"{
                 moveRight()
             }
@@ -52,11 +54,11 @@ class GameScene: SKScene {
         down = false
     }
     
-    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
-        car.removeAllActions()
-        up = false
-        down = false
-    }
+//    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+//        car.removeAllActions()
+//        up = false
+//        down = false
+//    }
     
     func moveForward(){
         let moveAction = SKAction.move(to: CGPoint(x:car.position.x + cos(car.zRotation) * 2,y:car.position.y + sin(car.zRotation) * 2), duration: 0.01)
@@ -85,10 +87,10 @@ class GameScene: SKScene {
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
         if up == true {
-            moveForward()
+            car.physicsBody?.applyForce(CGVector(dx: 1, dy: 0))
+            //moveForward()
         }else if down == true{
             moveBack()
         }
-        
     }
 }
