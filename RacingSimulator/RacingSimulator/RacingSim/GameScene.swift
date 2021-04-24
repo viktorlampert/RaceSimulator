@@ -49,42 +49,11 @@ class GameScene: SKScene {
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        car.removeAllActions()
         up = false
         down = false
         left = false
         right = false
     }
-    
-//    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
-//        car.removeAllActions()
-//        up = false
-//        down = false
-//    }
-    
-//    func moveForward(){
-//        let moveAction = SKAction.move(to: CGPoint(x:car.position.x + cos(car.zRotation) * 2,y:car.position.y + sin(car.zRotation) * 2), duration: 0.01)
-//        let repeatAction = SKAction.repeatForever(moveAction)
-//        car.run(repeatAction)
-//    }
-//
-//    func moveBack(){
-//        let moveAction = SKAction.move(to: CGPoint(x:car.position.x - cos(car.zRotation) * 2,y:car.position.y - sin(car.zRotation) * 2), duration: 0.01)
-//        let repeatAction = SKAction.repeatForever(moveAction)
-//        car.run(repeatAction)
-//    }
-//
-//    func moveLeft(){
-//        let rotate = SKAction.rotate(byAngle: CGFloat(Double.pi / 120), duration: 0.01)
-//        let repeatAction = SKAction.repeatForever(rotate)
-//        car.run(repeatAction)
-//    }
-//
-//    func moveRight(){
-//        let rotate = SKAction.rotate(byAngle: -(CGFloat(Double.pi / 120)), duration: 0.01)
-//        let repeatAction = SKAction.repeatForever(rotate)
-//        car.run(repeatAction)
-//    }
 
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
