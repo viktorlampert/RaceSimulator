@@ -18,7 +18,7 @@ class ConditionScene: SKScene {
     var snowScene:SKScene!
     var wetScene:SKScene!
     var conditionLabel: SKLabelNode?
-    
+
     override func didMove(to view: SKView) {
         selectButton = self.childNode(withName: "SelectButton") as? SKSpriteNode
         conditionLabel = self.childNode(withName: "conditionSelected") as? SKLabelNode

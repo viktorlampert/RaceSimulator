@@ -11,7 +11,7 @@ import GameplayKit
 class StartScene: SKScene {
     
     var startButton: SKSpriteNode?
-    var conditionScene:SKScene!
+    var carScene:SKScene!
     
     override func didMove(to view: SKView) {
         startButton = self.childNode(withName: "StartButton") as? SKSpriteNode
@@ -24,9 +24,9 @@ class StartScene: SKScene {
             
             if node == startButton{
                 let transition = SKTransition.fade(withDuration: 1)
-                conditionScene = SKScene(fileNamed: "ConditionScene")
-                conditionScene.scaleMode = .aspectFit
-                self.view?.presentScene(conditionScene, transition: transition)
+                carScene = SKScene(fileNamed: "CarScene")
+                carScene.scaleMode = .aspectFit
+                self.view?.presentScene(carScene, transition: transition)
             }
         }
     }

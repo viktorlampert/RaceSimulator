@@ -11,7 +11,7 @@ import GameplayKit
 class GameScene: SKScene {
     
     var track:SKSpriteNode?
-    let car = SKSpriteNode(imageNamed: "Car1")
+    let car = SKSpriteNode(imageNamed: CarHandler.sharedInstances.car)
     var up:Bool = false
     var down:Bool = false
     let cameraNode = SKCameraNode()
