@@ -14,6 +14,7 @@ class GameScene: SKScene {
     let car = SKSpriteNode(imageNamed: "Car1")
     var up:Bool = false
     var down:Bool = false
+    let cameraNode = SKCameraNode()
 
     func createTrack(){
         track = self.childNode(withName: "NormalTrack") as? SKSpriteNode
@@ -23,7 +24,11 @@ class GameScene: SKScene {
         self.addChild(car)
         car.position = CGPoint(x: 300, y: 200)
         car.size = CGSize(width: 35,height: 30)
-
+        cameraNode.position = CGPoint(x: car.position.x, y: car.position.y)
+        self.addChild(cameraNode)
+        self.camera = cameraNode
+        let zoom = SKAction.scale(to: 0.5, duration: 1)
+        cameraNode.run(zoom)
         
     }
  
