@@ -12,8 +12,7 @@ class GameScene: SKScene {
     
     var track:SKSpriteNode?
     let car = SKSpriteNode(imageNamed: "Car1")
-    var offset = CGFloat(Double.pi)
-
+    
     func createTrack(){
         track = self.childNode(withName: "NormalTrack") as? SKSpriteNode
     }
@@ -53,35 +52,25 @@ class GameScene: SKScene {
     
     func moveForward(){
         //let moveAction = SKAction.move(to: CGPoint(x:car.position.x + cos(car.zRotation) * 1,y:car.position.y + sin(car.zRotation) * 1), duration: 0.01)
-        let moveAction = SKAction.move(by: CGVector(dx: 1, dy: 0), duration: 0.01)
+        let moveAction = SKAction.move(by: CGVector(dx:car.position.x + cos(car.zRotation) * 0.1,dy: car.position.y + sin(car.zRotation) * 0.1), duration: 2)
         let repeatAction = SKAction.repeatForever(moveAction)
         car.run(repeatAction)
-        
-        //car.position = CGPoint(x:car.position.x + cos(car.zRotation) * 1,y:car.position.y + sin(car.zRotation) * 1)
     }
     
     func moveBack(){
-//        car.position = CGPoint(x:car.position.x + cos(car.zRotation) * 1,y:car.position.y + sin(car.zRotation) * 1)
-        let moveAction = SKAction.move(by: CGVector(dx: -1, dy: 0), duration: 0.01)
+        let moveAction = SKAction.move(by: CGVector(dx:-(car.position.x + cos(car.zRotation) * 0.1),dy:0), duration: 2)
         let repeatAction = SKAction.repeatForever(moveAction)
         car.run(repeatAction)
     }
 
     
     func moveLeft(){
-//        car.position = CGPoint(x:car.position.x + cos(car.zRotation) * 1,y:car.position.y + sin(car.zRotation) * 1)
-        let moveAction = SKAction.move(by: CGVector(dx: -1, dy: 1), duration: 0.01)
-        let repeatAction = SKAction.repeatForever(moveAction)
-        car.run(repeatAction)
+        
     }
 
     
     func moveRight(){
-//        car.position = CGPoint(x:car.position.x + cos(car.zRotation) * 1,y:car.position.y + sin(car.zRotation) * 1)
         
-        let moveAction = SKAction.move(by: CGVector(dx: 1, dy: -1), duration: 0.01)
-        let repeatAction = SKAction.repeatForever(moveAction)
-        car.run(repeatAction)
     }
 
     override func update(_ currentTime: TimeInterval) {
