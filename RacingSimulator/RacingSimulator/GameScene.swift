@@ -12,7 +12,9 @@ class GameScene: SKScene {
     
     var track:SKSpriteNode?
     let car = SKSpriteNode(imageNamed: "Car1")
-    
+    var up:Bool = false
+    var down:Bool = false
+
     func createTrack(){
         track = self.childNode(withName: "NormalTrack") as? SKSpriteNode
     }
@@ -22,20 +24,19 @@ class GameScene: SKScene {
         car.position = CGPoint(x: 300, y: 200)
     }
  
- 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if let touch = touches.first{
             let location = touch.previousLocation(in: self)
             let node = self.nodes(at: location).first
                         
             if node?.name == "Up"{
-                moveForward()
+                up = true
             }else if node?.name == "Down"{
-                moveBack()
+                down = true
             }else if node?.name == "Left"{
-                moveLeft()
+                
             }else if node?.name == "Right"{
-                moveRight()
+                
             }
         }
         
@@ -44,26 +45,28 @@ class GameScene: SKScene {
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         car.removeAllActions()
+        up = false
+        down = false
     }
     
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
         car.removeAllActions()
+        up = false
+        down = false
     }
     
     func moveForward(){
-        //let moveAction = SKAction.move(to: CGPoint(x:car.position.x + cos(car.zRotation) * 1,y:car.position.y + sin(car.zRotation) * 1), duration: 0.01)
-        let moveAction = SKAction.move(by: CGVector(dx:car.position.x + cos(car.zRotation) * 0.1,dy: car.position.y + sin(car.zRotation) * 0.1), duration: 2)
+        let moveAction = SKAction.move(to: CGPoint(x:car.position.x + cos(car.zRotation) * 2,y:car.position.y + sin(car.zRotation) * 2), duration: 0.01)
         let repeatAction = SKAction.repeatForever(moveAction)
         car.run(repeatAction)
     }
     
     func moveBack(){
-        let moveAction = SKAction.move(by: CGVector(dx:-(car.position.x + cos(car.zRotation) * 0.1),dy:0), duration: 2)
+        let moveAction = SKAction.move(to: CGPoint(x:car.position.x - cos(car.zRotation) * 2,y:car.position.y - sin(car.zRotation) * 2), duration: 0.01)
         let repeatAction = SKAction.repeatForever(moveAction)
         car.run(repeatAction)
     }
 
-    
     func moveLeft(){
         
     }
@@ -75,5 +78,12 @@ class GameScene: SKScene {
 
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
+        //moveForward()
+        if up == true {
+            moveForward()
+        }else if down == true{
+            moveBack()
+        }
+        
     }
 }
