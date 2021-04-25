@@ -27,6 +27,7 @@ class GameScene: SKScene {
         self.car.zPosition = 1.0
         car.size = CGSize(width: 35,height: 30)
         car.physicsBody = SKPhysicsBody(rectangleOf: car.size)
+        car.physicsBody?.friction = 0.7
         car.physicsBody?.affectedByGravity = false
     }
  
@@ -57,14 +58,12 @@ class GameScene: SKScene {
 
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
-        
-        car.physicsBody?.velocity = self.physicsBody!.velocity
+        //car.physicsBody?.velocity = self.physicsBody!.velocity //always sets velocity to self.velocity which is prob a small number
         
         if up == true {
-            car.physicsBody?.applyForce(CGVector(dx: car.position.x * cos(car.zRotation), dy:car.position.y * sin(car.zRotation)))
-            //moveForward()
+            car.physicsBody?.applyForce(CGVector(dx: car.position.x * cos(car.zRotation) + 0.1, dy:car.position.y * sin(car.zRotation) + 0.1))
         }else if down == true{
-   
+            car.physicsBody?.applyForce(CGVector(dx: (-1 * car.position.x * cos(car.zRotation)) + 0.1, dy:-1 * car.position.y * sin(car.zRotation) + 0.1))
         }else if left == true{
             car.physicsBody?.applyTorque(CGFloat(0.001))
         }else if right == true{
